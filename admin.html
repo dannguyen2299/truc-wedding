@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quản trị bảng giá · Trúc Wedding</title>
+<link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+<header class="admin-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">Trúc WEDDING</a>
+    <button id="logoutBtn" class="button secondary hidden" type="button">Đăng xuất</button>
+  </div>
+</header>
+
+<main class="wrap admin-main">
+  <div id="statusMessage" aria-live="polite"></div>
+
+  <section id="loginBox" class="login-card">
+    <p class="eyebrow">ADMIN</p>
+    <h1>Quản lý Bảng giá</h1>
+    <p>Đăng nhập bằng tài khoản Google đã được cấp quyền trong <code>js/pricing-config.js</code> (mục <code>ADMINS</code>) và đã được share quyền Editor trên Google Sheet "Packages".</p>
+    <button id="loginBtn" class="button" type="button">Đăng nhập bằng Google</button>
+  </section>
+
+  <section id="adminPanel" class="hidden">
+    <div class="admin-toolbar">
+      <div>
+        <p class="eyebrow">ADMIN</p>
+        <h1>Quản lý Bảng giá</h1>
+        <p id="userInfo"></p>
+      </div>
+    </div>
+
+    <div class="admin-grid">
+      <form id="packageForm" class="form-card">
+        <h2 id="formTitle">Sửa gói</h2>
+        <label>Gói
+          <select id="packageSelect" name="package_id" required>
+            <option value="goi1">Gói 1 — 1 link riêng (nhà trai hoặc nhà gái)</option>
+            <option value="goi2">Gói 2 — 1 link dùng chung (dâu rể)</option>
+            <option value="goi3">Gói 3 — combo 2 link riêng</option>
+            <option value="govip">Gói VIP — thiết kế theo yêu cầu</option>
+          </select>
+        </label>
+        <label>Trạng thái
+          <select name="status">
+            <option value="active">Hiện (active)</option>
+            <option value="inactive">Ẩn (inactive)</option>
+          </select>
+        </label>
+        <label>Nhãn hiển thị<input name="label" placeholder="Gói 1" required /></label>
+        <div class="form-row">
+          <label>Giá hiện tại<input name="final_price" placeholder="149.000 VNĐ" required /></label>
+          <label>Giá gốc (để trống nếu không có)<input name="original_price" placeholder="299.000 VNĐ" /></label>
+        </div>
+        <label>Nhãn giảm giá (để trống nếu không có)<input name="discount_label" placeholder="Giảm 50% còn:" /></label>
+        <label>Mô tả ngắn (cho phép &lt;br&gt;, &lt;span style=&quot;color:...&quot;&gt;)
+          <textarea name="subtitle" rows="2" placeholder="1 link thiệp: Nhà trai hoặc nhà gái"></textarea>
+        </label>
+        <label>Danh sách tính năng (cho phép &lt;br&gt;, &lt;span style=&quot;color:...&quot;&gt;)
+          <textarea name="features" rows="6" placeholder="- Ghi được tên khách mời...&lt;br&gt;- ..."></textarea>
+        </label>
+        <p class="form-hint">Trang chủ luôn có đúng 4 gói cố định (goi1/goi2/goi3/govip) — sửa nội dung ở đây thay vì tạo gói mới. "Ẩn" chỉ giữ nguyên giá cũ đang hiển thị trên trang, không xoá gì cả.</p>
+        <div class="form-actions">
+          <button id="packageSubmit" class="button" type="submit">Lưu gói</button>
+          <button id="packageDelete" class="button danger" type="button">Xoá dữ liệu gói này</button>
+        </div>
+      </form>
+
+      <div class="table-card">
+        <div class="section-heading">
+          <div><h2>Danh sách gói</h2><span id="packageCount"></span></div>
+          <button id="refreshBtn" class="button secondary" type="button">Tải lại</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Gói</th><th>Giá gốc</th><th>Giá hiện tại</th><th>Trạng thái</th><th></th></tr></thead>
+            <tbody id="packageRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="https://accounts.google.com/gsi/client" defer></script>
+<script src="js/pricing-config.js"></script>
+<script src="js/sheetsApi.js"></script>
+<script src="js/admin.js" defer></script>
+</body>
+</html>
