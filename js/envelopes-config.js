@@ -1,4 +1,4 @@
-const ENVELOPE_HEADERS = ['envelope_id', 'name', 'image_url', 'video_url'];
+const ENVELOPE_HEADERS = ['envelope_id', 'name', 'image_url', 'video_url', 'status'];
 
 function envelopeUrl(value) {
   try {
@@ -19,4 +19,9 @@ function envelopeRows(rows) {
     ids.add(row.envelope_id);
     return true;
   });
+}
+
+// Existing rows without a status remain visible.
+function envelopeIsVisible(item) {
+  return String(item.status || '').trim().toLowerCase() !== 'inactive';
 }

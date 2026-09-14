@@ -19,7 +19,7 @@
 
   <section id="loginBox" class="login-card">
     <p class="eyebrow">ADMIN</p>
-    <h1>Quản lý Bảng giá & Phong bì</h1>
+    <h1>Quản lý Bảng giá & Thiệp</h1>
     <button id="loginBtn" class="button" type="button">Đăng nhập bằng Google</button>
   </section>
 
@@ -27,28 +27,30 @@
     <div class="admin-toolbar">
       <div>
         <p class="eyebrow">ADMIN</p>
-        <h1>Quản lý Bảng giá & Phong bì</h1>
+        <h1>Quản lý Bảng giá & Thiệp</h1>
         <p id="userInfo"></p>
       </div>
     </div>
 
     <nav class="admin-tabs" aria-label="Mục quản lý">
       <button type="button" class="button" id="pricingTab" aria-pressed="true">Bảng giá</button>
-      <button type="button" class="button secondary" id="envelopesTab" aria-pressed="false">Phong bì</button>
+      <button type="button" class="button secondary" id="envelopesTab" aria-pressed="false">Quản lý thiệp</button>
       <a href="template.html" target="_blank" rel="noopener">Xem trang mẫu ↗</a>
     </nav>
     <div id="envelopesPanel" class="admin-grid hidden">
       <form id="envelopeForm" class="form-card">
-        <h2 id="envelopeFormTitle">Thêm phong bì mới</h2>
-        <label>Chọn mẫu phong bì<select id="envelopeSelect" name="envelope_id"></select></label>
-        <label>Tên phong bì<input name="name" maxlength="80" required /></label>
+        <h2 id="envelopeFormTitle">Thêm thiệp mới</h2>
+        <label>Chọn mẫu thiệp<select id="envelopeSelect" name="envelope_id"></select></label>
+        <label>Tên thiệp<input name="name" maxlength="80" required /></label>
         <label>Link ảnh đại diện<input name="image_url" type="url" placeholder="https://…/phong-bi.jpg" aria-describedby="envelopeImageHelp" required /></label>
         <div id="envelopeImageHelp" class="form-hint">
           <p><strong>Cách lấy link ảnh:</strong> Truy cập <a href="https://postimages.org/" target="_blank" rel="noopener noreferrer">Postimages ↗</a> → tải ảnh lên → sao chép link ở mục <strong>“Liên kết trực tiếp”</strong> → dán vào ô trên.</p>
-          <p><strong>Kích thước gợi ý:</strong> 600 × 1200 px (ảnh dọc, tỷ lệ 1:2). Nên để nội dung phong bì gần sát mép ảnh; tránh ảnh ngang hoặc ảnh có nhiều khoảng trắng để mẫu hiển thị rõ hơn.</p>
+          <p><strong>Kích thước gợi ý:</strong> 600 × 1200 px (ảnh dọc, tỷ lệ 1:2). Nên để nội dung thiệp gần sát mép ảnh; tránh ảnh ngang hoặc ảnh có nhiều khoảng trắng để mẫu hiển thị rõ hơn.</p>
         </div>
         <label>Link video<input name="video_url" type="url" placeholder="https://…" required /></label>
         <p class="form-hint">Bấm ảnh hoặc “Xem thiệp” sẽ mở link video này trong tab mới.</p>
+        <label>Trạng thái<select name="status"><option value="active">Hiện thiệp</option><option value="inactive">Ẩn thiệp</option></select></label>
+        <p class="form-hint">Thiệp ẩn vẫn có trong admin nhưng không hiển thị trên trang mẫu.</p>
         <section class="preview-card">
           <h3>Xem trước</h3>
           <img id="envelopePreviewImage" class="envelope-preview-image" alt="" hidden />
@@ -57,13 +59,15 @@
           <a id="envelopePreviewLink" target="_blank" rel="noopener noreferrer" hidden>Xem thiệp ↗</a>
         </section>
         <p id="envelopeSaveMeta" class="save-meta" aria-live="polite"></p>
-        <div class="form-actions"><button id="envelopeSubmit" class="button" type="submit" disabled>Lưu phong bì</button></div>
+        <div class="form-actions"><button id="envelopeSubmit" class="button" type="submit" disabled>Lưu thiệp</button></div>
       </form>
       <div class="table-card">
-        <div class="section-heading"><h2>Danh sách phong bì</h2><button id="envelopeRefresh" class="button secondary" type="button">Tải lại</button></div>
+        <div class="section-heading"><h2>Danh sách thiệp</h2><button id="envelopeRefresh" class="button secondary" type="button">Tải lại</button></div>
         <p id="envelopeCount" class="form-hint"></p>
-        <p class="form-hint">Danh sách lấy từ tab Envelopes theo thứ tự dòng. Chọn “Thêm phong bì mới” để thêm mẫu.</p>
-        <div class="table-wrap"><table><thead><tr><th>Ảnh</th><th>Phong bì</th><th></th></tr></thead><tbody id="envelopeRows"></tbody></table></div>
+        <button id="envelopeAddSamples" class="button secondary" type="button" disabled>Thêm 15 thiệp mẫu</button>
+        <p class="form-hint">Thêm 15 mẫu có sẵn tên và ảnh. Bạn cần cài link video cho từng mẫu. Các mẫu đã thêm sẽ không bị thêm trùng.</p>
+        <p class="form-hint">Danh sách lấy từ tab Envelopes theo thứ tự dòng. Chọn “Thêm thiệp mới” để thêm mẫu.</p>
+        <div class="table-wrap"><table><thead><tr><th>Ảnh</th><th>Thiệp</th><th></th></tr></thead><tbody id="envelopeRows"></tbody></table></div>
       </div>
     </div>
     <div id="pricingPanel" class="admin-grid">
@@ -124,8 +128,8 @@
 <script src="https://accounts.google.com/gsi/client" defer></script>
 <script src="js/pricing-config.js"></script>
 <script src="js/sheetsApi.js"></script>
-<script src="js/envelopes-config.js"></script>
+<script src="js/envelopes-config.js?v=20260914-status"></script>
 <script src="js/admin.js" defer></script>
-<script src="js/admin-envelopes.js" defer></script>
+<script src="js/admin-envelopes.js?v=20260914-status" defer></script>
 </body>
 </html>
