@@ -65,37 +65,6 @@ async function updatePrivateRow(accessToken, spreadsheetId, sheetName, rowNumber
   return parseResponse(response, `Không cập nhật được dữ liệu trong ${sheetName}`);
 }
 
-async function getSheetIdByName(accessToken, spreadsheetId, sheetName) {
-  const response = await fetch(`${SHEETS_BASE}/${spreadsheetId}?fields=sheets.properties`, {
-    headers: { Authorization: `Bearer ${accessToken}` },
-  });
-  const data = await parseResponse(response, 'Không đọc được thông tin spreadsheet');
-  const sheet = (data.sheets || []).find((item) => item.properties?.title === sheetName);
-  if (!sheet) throw new Error(`Không tìm thấy tab "${sheetName}" trong spreadsheet`);
-  return sheet.properties.sheetId;
-}
-
-async function deletePrivateRow(accessToken, spreadsheetId, sheetName, rowNumber) {
-  const sheetId = await getSheetIdByName(accessToken, spreadsheetId, sheetName);
-  const response = await fetch(`${SHEETS_BASE}/${spreadsheetId}:batchUpdate`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      requests: [{
-        deleteDimension: {
-          range: {
-            sheetId,
-            dimension: 'ROWS',
-            startIndex: rowNumber - 1,
-            endIndex: rowNumber,
-          },
-        },
-      }],
-    }),
-  });
-  return parseResponse(response, `Không xoá được dòng trong ${sheetName}`);
-}
-
 async function getGoogleUser(accessToken) {
   const response = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
     headers: { Authorization: `Bearer ${accessToken}` },

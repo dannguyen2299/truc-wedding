@@ -5,6 +5,18 @@
   const SHEETS_BASE = 'https://sheets.googleapis.com/v4/spreadsheets';
   const RED = 'rgb(111, 3, 3)';
 
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>'"]/g, (char) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;',
+    })[char]);
+  }
+
+  function sheetTextToHtml(value) {
+    const container = document.createElement('div');
+    container.innerHTML = String(value ?? '').replace(/<br\s*\/?\s*>/gi, '\n');
+    return escapeHtml(container.textContent || '').replace(/\r?\n/g, '<br>');
+  }
+
   function rowsToObjects(values) {
     if (!values || !values.length) return [];
     const headers = values[0].map((header) => String(header).trim());
@@ -49,45 +61,45 @@
     const vip = pkgs.govip;
 
     if (g1 && g1.status !== 'inactive') {
-      setHtml('HEADLINE48', g1.original_price);
-      setHtml('HEADLINE66', `Gói 1: <span style="color: ${RED};">${g1.final_price}</span><br>`);
-      setHtml('HEADLINE25', g1.subtitle);
-      setHtml('HEADLINE82', g1.features);
+      setHtml('HEADLINE48', sheetTextToHtml(g1.original_price));
+      setHtml('HEADLINE66', `${sheetTextToHtml(g1.label || 'Gói 1')}: <span style="color: ${RED};">${sheetTextToHtml(g1.final_price)}</span><br>`);
+      setHtml('HEADLINE25', sheetTextToHtml(g1.subtitle));
+      setHtml('HEADLINE82', sheetTextToHtml(g1.features));
     }
 
     if (g2 && g2.status !== 'inactive') {
       // Thẻ tóm tắt giá (GROUP37)
-      setHtml('HEADLINE67', g2.original_price);
+      setHtml('HEADLINE67', sheetTextToHtml(g2.original_price));
       setHtml('HEADLINE69', g2.discount_label
-        ? `<span style="color: rgb(5, 41, 94);">${g2.discount_label}</span> <span style="font-size: 28px;">${g2.final_price}</span><br>`
-        : `<span style="font-size: 28px;">${g2.final_price}</span><br>`);
-      setHtml('HEADLINE70', g2.subtitle);
+        ? `<span style="color: rgb(5, 41, 94);">${sheetTextToHtml(g2.discount_label)}</span> <span style="font-size: 28px;">${sheetTextToHtml(g2.final_price)}</span><br>`
+        : `<span style="font-size: 28px;">${sheetTextToHtml(g2.final_price)}</span><br>`);
+      setHtml('HEADLINE70', sheetTextToHtml(g2.subtitle));
       // Thẻ chi tiết (GROUP44)
-      setHtml('HEADLINE86', g2.original_price);
-      setHtml('HEADLINE89', `Gói 2: <span style="color: ${RED};">${g2.final_price}</span><br>`);
-      setHtml('HEADLINE88', g2.subtitle);
-      setHtml('HEADLINE90', g2.features);
+      setHtml('HEADLINE86', sheetTextToHtml(g2.original_price));
+      setHtml('HEADLINE89', `${sheetTextToHtml(g2.label || 'Gói 2')}: <span style="color: ${RED};">${sheetTextToHtml(g2.final_price)}</span><br>`);
+      setHtml('HEADLINE88', sheetTextToHtml(g2.subtitle));
+      setHtml('HEADLINE90', sheetTextToHtml(g2.features));
     }
 
     if (g3 && g3.status !== 'inactive') {
       // Badge nhỏ đầu bảng giá (GROUP49)
-      setHtml('HEADLINE91', g3.original_price);
-      setHtml('HEADLINE93', g3.subtitle);
-      setHtml('HEADLINE94', `Gói 3: <span style="color: ${RED};">${g3.final_price}</span><br>`);
+      setHtml('HEADLINE91', sheetTextToHtml(g3.original_price));
+      setHtml('HEADLINE93', sheetTextToHtml(g3.subtitle));
+      setHtml('HEADLINE94', `${sheetTextToHtml(g3.label || 'Gói 3')}: <span style="color: ${RED};">${sheetTextToHtml(g3.final_price)}</span><br>`);
       // Thẻ tóm tắt giá chính (GROUP39/40)
-      setHtml('HEADLINE72', g3.original_price);
+      setHtml('HEADLINE72', sheetTextToHtml(g3.original_price));
       setHtml('HEADLINE74', g3.discount_label
-        ? `${g3.discount_label} <span style="font-size: 28px; color: ${RED};">${g3.final_price}</span><br>`
-        : `<span style="font-size: 28px; color: ${RED};">${g3.final_price}</span><br>`);
-      setHtml('HEADLINE75', g3.subtitle);
+        ? `${sheetTextToHtml(g3.discount_label)} <span style="font-size: 28px; color: ${RED};">${sheetTextToHtml(g3.final_price)}</span><br>`
+        : `<span style="font-size: 28px; color: ${RED};">${sheetTextToHtml(g3.final_price)}</span><br>`);
+      setHtml('HEADLINE75', sheetTextToHtml(g3.subtitle));
       // Chi tiết tính năng (đứng độc lập, đi kèm GROUP44)
-      setHtml('HEADLINE95', g3.features);
+      setHtml('HEADLINE95', sheetTextToHtml(g3.features));
     }
 
     if (vip && vip.status !== 'inactive') {
-      setHtml('HEADLINE79', `<span style="font-size: 28px;">${vip.final_price}</span><br>`);
-      setHtml('HEADLINE80', vip.subtitle);
-      setHtml('HEADLINE81', `Gói <span style="color: ${RED};">${vip.label || 'vip'}</span><br>`);
+      setHtml('HEADLINE79', `<span style="font-size: 28px;">${sheetTextToHtml(vip.final_price)}</span><br>`);
+      setHtml('HEADLINE80', sheetTextToHtml(vip.subtitle));
+      setHtml('HEADLINE81', `Gói <span style="color: ${RED};">${sheetTextToHtml(vip.label || 'vip')}</span><br>`);
     }
   }
 

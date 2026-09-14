@@ -25,11 +25,13 @@ const PRICING_CONFIG = {
   SHEET_ID: '1yVgLBkG-8-12D1R_4r25ig-q6Ec5QClmOuGTeaq_hn8',
   API_KEY: 'AIzaSyBXs7DxIWRoh2oQxy5fIgZo02rQnKvdRFc',
   TAB_NAME: 'Packages',
+  ENVELOPES_TAB_NAME: 'Envelopes',
 
   CLIENT_ID: '484251388580-8dkrm0hvbviugkg83pbnlcg3dvdon4qq.apps.googleusercontent.com',
 
   // Danh sách email được phép đăng nhập admin.html để sửa bảng giá.
   ADMINS: [
-    // { email: 'ban@gmail.com', display_name: 'Tên bạn' },
+    { email: 'dannguyen22993@gmail.com', display_name: 'Dan Nguyen' },
+    { email: 'laithitruc1357@gmail.com', display_name: 'Lai Thi Truc' },
   ],
 };

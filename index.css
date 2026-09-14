@@ -119,10 +119,6 @@ a:link {color: inherit;}
 [data-hint]:not([data-timeout-id-copied]):before, [data-hint]:not([data-timeout-id-copied]):after {display: none !important;}
 .ladi-section.ladi-auto-scroll {overflow-x: auto;overflow-y: hidden;-webkit-overflow-scrolling: touch;}
 
-/* ===== style_animation ===== */
-@media (max-width: 767px) {#GROUP5, #GROUP6, #GROUP7, #SHAPE1, #SHAPE2, #HEADLINE9, #HEADLINE19, #BUTTON4, #HEADLINE25, #HEADLINE32, #IMAGE6, #HEADLINE34, #HEADLINE35, #HEADLINE36, #HEADLINE38, #HEADLINE40, #SHAPE12, #HEADLINE42, #HEADLINE44, #HEADLINE46, #HEADLINE47, #HEADLINE48, #HEADLINE49, #HEADLINE55, #HEADLINE57, #HEADLINE58, #HEADLINE60, #HEADLINE63, #HEADLINE65, #SHAPE13, #HEADLINE66, #HEADLINE67, #HEADLINE68, #HEADLINE69, #HEADLINE70, #HEADLINE71, #HEADLINE72, #HEADLINE73, #HEADLINE74, #HEADLINE75, #HEADLINE76, #HEADLINE79, #HEADLINE80, #HEADLINE81, #HEADLINE85, #HEADLINE86, #HEADLINE87, #HEADLINE88, #HEADLINE89, #HEADLINE91, #HEADLINE92, #HEADLINE93, #HEADLINE94, #HEADLINE96 {opacity: 0 !important; pointer-events: none !important;}
-}
-
 /* ===== style_page ===== */
 body {direction: ltr;}
 .ladi-wraper {margin: 0 auto; width: 420px;}
@@ -151,17 +147,34 @@ body {font-family: VVRNIEFWTJPTEQuVFRG}
 #IMAGE2{width: 30px; height: 40px;top: 4px; left: 8.5px;}
 #IMAGE2 > .ladi-image > .ladi-image-background{width: 83.6px; height: 81.6px;top: -23.6px; left: -27.2px;background-image: url("https://w.ladicdn.com/s400x400/649340684a3700001217851c/22-20250825051819-9n45y.png");}
 #IMAGE2 > .ladi-image{filter: saturate(45%);}
-#HEADLINE7{width: 228px;top: 10px; left: 46px;}
+#HEADLINE7{width: 269px;top: 10px; left: 53.5px;}
 #HEADLINE7 > .ladi-headline,#HEADLINE3 > .ladi-headline,#HEADLINE6 > .ladi-headline,#HEADLINE65 > .ladi-headline{font-size: 16px; font-weight: bold; line-height: 1.6; color: rgb(5, 41, 94); text-align: center;}
-#GROUP1,#BOX1{width: 115px; height: 115px;}
-#GROUP1{top: 8.5px; left: 152.5px;}
-#BOX1 > .ladi-box{border-width: 4px; border-radius: 127px; border-style: solid; border-color: rgb(255, 255, 255);background-image: url("https://w.ladicdn.com/s450x450/649340684a3700001217851c/z6504180394041_8865b9e05827cd70ac102733bf2ab85a-20250414085224-4iymi.jpg"); background-size: cover; background-origin: content-box; background-position: center top; background-repeat: repeat; background-attachment: scroll;}
-#IMAGE1,#IMAGE1 > .ladi-image > .ladi-image-background{width: 93.1956px; height: 93.1956px;}
-#IMAGE1{top: 14.2068px; left: 8.587px;}
-#IMAGE1 > .ladi-image > .ladi-image-background{background-image: url("https://w.ladicdn.com/63dcce7f70e4df00118313ef/giphy-20200827090502-20240225053705-92_1l-20240610071012-kltgy.gif");}
+#HEADLINE7 > .ladi-headline,#HEADLINE6 > .ladi-headline{text-align: left;}
+#GROUP1{width: 300px; height: 128px; top: 3px; left: 60px; z-index: 5;}
+#BOX1{width: 76px; height: 76px; top: 0; left: 112px;}
+#BOX1 > .ladi-box{border-width: 2px; border-radius: 127px; border-style: solid; border-color: rgba(255, 255, 255, .96); box-shadow: 0 4px 16px rgba(5, 41, 94, .18); background-color: rgba(255, 255, 255, .55); background-image: url("https://w.ladicdn.com/s450x450/649340684a3700001217851c/z6504180394041_8865b9e05827cd70ac102733bf2ab85a-20250414085224-4iymi.jpg"); background-size: cover; background-origin: content-box; background-position: center top; background-repeat: no-repeat; background-attachment: scroll;}
+#BOX1 > .ladi-box::before{content: ''; position: absolute; inset: 6px; border: 1px solid rgba(111, 3, 3, .55); border-radius: 50%; pointer-events: none;}
+#IMAGE1,#IMAGE1 > .ladi-image > .ladi-image-background{width: 62px; height: 62px;}
+#IMAGE1{top: 7px; left: 119px; border-radius: 50%; z-index: 2; opacity: .18;}
+#IMAGE1 > .ladi-image > .ladi-image-background{border-radius: 50%; background-image: url("https://w.ladicdn.com/63dcce7f70e4df00118313ef/giphy-20200827090502-20240225053705-92_1l-20240610071012-kltgy.gif");}
+#LOGO_MARK{width: 76px; height: 76px; top: 0; left: 112px; z-index: 4; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(111, 3, 3, .7); border-radius: 50%; background: rgba(255, 255, 255, .62);}
+#LOGO_MARK{animation: logoFloat 5s ease-in-out infinite, logoGlow 4s ease-in-out infinite;}
+#LOGO_MARK::before{content: ''; position: absolute; inset: 5px; border: 1px solid rgba(5, 41, 94, .28); border-top-color: rgba(111, 3, 3, .72); border-right-color: rgba(5, 41, 94, .55); border-radius: 50%; animation: logoRing 8s linear infinite;}
+#LOGO_MARK span{position: relative; font-family: VVRNIEFWTJPTEQuVFRG, sans-serif; font-size: 22px; font-weight: bold; letter-spacing: 1px; color: rgb(5, 41, 94);}
+#LOGO_BRAND{width: 300px; height: 49px; top: 77px; left: 0; z-index: 3;}
+#LOGO_BRAND{animation: logoAppear .9s ease-out .15s both;}
+#LOGO_BRAND .logo-brand-copy{height: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; text-align: center; color: rgb(5, 41, 94);}
+#LOGO_BRAND .logo-brand-kicker{font-family: VVRNIEFWTJPTEQuVFRG, sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 1.15px; line-height: 1.2; white-space: nowrap;}
+#LOGO_BRAND .logo-brand-name{margin-top: 0; font-family: MUZUViWSVAtUElDVFVSRVMtUlHTkFUVVJFLkURg, 'Brush Script MT', cursive; font-size: 36px; line-height: .9; color: rgb(111, 3, 3); white-space: nowrap;}
+#LOGO_BRAND .logo-brand-tagline{margin-top: 2px; padding-top: 2px; border-top: 1px solid rgba(111, 3, 3, .5); font-family: VVRNIEFWTyUVEY, sans-serif; font-size: 7px; letter-spacing: .35px; line-height: 1.1; color: rgb(111, 3, 3); white-space: nowrap;}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes logoGlow{0%,100%{box-shadow:0 4px 16px rgba(5,41,94,.18)}50%{box-shadow:0 5px 22px rgba(111,3,3,.3)}}
+@keyframes logoRing{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes logoAppear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion: reduce){#LOGO_MARK,#LOGO_MARK::before,#LOGO_BRAND{animation:none!important;}}
 #GROUP5{top: 152px; left: 44.5px;}
 #HEADLINE3{width: 42px;top: 8.5px; left: 4px;}
-#HEADLINE6{width: 270px;top: 9px; left: 49px;}
+#HEADLINE6{width: 266px;top: 9px; left: 53.5px;}
 #GROUP7{top: 269px; left: 44.5px;}
 #GROUP7.ladi-animation > .ladi-group{animation-name: fadeInDown; animation-delay: 0s; animation-duration: 3s; animation-iteration-count: 1;}
 #IMAGE3{width: 25.7017px; height: 27.8046px;top: 9.195px; left: 9.7983px;}
@@ -360,7 +373,7 @@ body {font-family: VVRNIEFWTJPTEQuVFRG}
 #POPUP1{width: 281px; height: 400px;right: 0px; bottom: 0px; margin: auto;}
 #IMAGE4,#IMAGE4 > .ladi-image > .ladi-image-background{width: 258.793px; height: 276px;}
 #IMAGE4{top: 62px; left: 16.1707px;}
-#IMAGE4 > .ladi-image > .ladi-image-background{background-image: url("https://w.ladicdn.com/s600x600/649340684a3700001217851c/z6441027197731_e3ab092dd1ca4a78f51464e24cb92ead-20250325092829-yez4n.jpg");}
+#IMAGE4 > .ladi-image > .ladi-image-background{background-image: url("https://pngup.com/UhXF/2aOboQxpKAZ2NxbugagTVhWDGHeoDsqh0oP61vI8.jpg");}
 
 /* ===== style_lazyload ===== */
 body.lazyload .ladi-overlay, body.lazyload .ladi-box, body.lazyload .ladi-button-background, body.lazyload .ladi-collection-item:before, body.lazyload .ladi-countdown-background, body.lazyload .ladi-form-item-background, body.lazyload .ladi-form-label-container .ladi-form-label-item.image, body.lazyload .ladi-frame-background, body.lazyload .ladi-gallery-view-item, body.lazyload .ladi-gallery-control-item, body.lazyload .ladi-headline, body.lazyload .ladi-image-background, body.lazyload .ladi-image-compare, body.lazyload .ladi-list-paragraph ul li:before, body.lazyload .ladi-section-background, body.lazyload .ladi-survey-option-background, body.lazyload .ladi-survey-option-image, body.lazyload .ladi-tabs-background, body.lazyload .ladi-video-background, body.lazyload .ladi-banner, body.lazyload .ladi-spin-lucky-screen, body.lazyload .ladi-spin-lucky-start {background-image: none !important;}
@@ -398,5 +411,3 @@ body.lazyload .ladi-overlay, body.lazyload .ladi-box, body.lazyload .ladi-button
 @keyframes fadeInRight {0% {opacity: 0;-webkit-transform: translateX(40px);-ms-transform: translateX(40px);transform: translateX(40px);}
 100% {opacity: 1;-webkit-transform: translateX(0);-ms-transform: translateX(0);transform: translateX(0);}
 }
-
-

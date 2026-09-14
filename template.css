@@ -175,6 +175,7 @@ body {direction: ltr;}
 @font-face {font-family: "VVRNIEFWTyUVEY";src: url("https://w.ladicdn.com/649340684a3700001217851c/utm-avo-20250418075341-itwii.ttf") format("truetype");}
 @font-face {font-family: "VVRNIEFWTJPTEQuVFRG";src: url("https://w.ladicdn.com/649340684a3700001217851c/utm-avobold-20250825054019-0rvc2.ttf") format("truetype");}
 @font-face {font-family: "MUZUViWSVAtQXNraWxvbivdGY";src: url("https://w.ladicdn.com/649340684a3700001217851c/1ftv-vip-askilon-20250527035116-t2uat.otf")}
+@font-face {font-family: "MUZUViWSVAtUElDVFVSRVMtUlHTkFUVVJFLkURg";src: url("https://w.ladicdn.com/649340684a3700001217851c/1ftv-vip-pictures-signature-20250815100921-f_7tw.otf")}
 body {font-family: "Open Sans", sans-serif}
 
 /* ===== style_element ===== */
@@ -194,13 +195,28 @@ body {font-family: "Open Sans", sans-serif}
 #HEADLINE78{width: 385px;top: 69.6518px; left: 17.014px;}
 #HEADLINE78 > .ladi-headline{font-family: VVRNIEFWTJPTEQuVFRG; font-size: 27px; font-weight: bold; line-height: 1.6; color: rgb(5, 41, 94); text-align: center;}
 #HEADLINE78.ladi-animation > .ladi-headline{animation-name: pulse; animation-delay: 0s; animation-duration: 1s; animation-iteration-count: infinite;}
-#GROUP56,#BOX51{width: 115px; height: 115px;}
-#GROUP56{top: 15.5px; left: 151.486px;}
+#GROUP56{width: 300px; height: 128px; top: 3px; left: 60px; z-index: 5;}
+#BOX51{width: 76px; height: 76px; top: 0; left: 112px;}
 #BOX51,#IMAGE50 > .ladi-image > .ladi-image-background,#HEADLINE81,#IMAGE8 > .ladi-image > .ladi-image-background,#GROUP59,#POPUP2,#IMAGE43,#IMAGE43 > .ladi-image > .ladi-image-background,#POPUP6,#POPUP7,#POPUP1,#IMAGE44 > .ladi-image > .ladi-image-background,#POPUP9,#POPUP_MENU_MOBILE_MENU5,#POPUP_MENU_MOBILE_MENU6,#POPUP_MENU_MOBILE_MENU7{top: 0px; left: 0px;}
-#BOX51 > .ladi-box{border-width: 4px; border-radius: 127px; border-style: solid; border-color: rgb(255, 255, 255);background-image: url("https://w.ladicdn.com/s450x450/649340684a3700001217851c/z6504180394041_8865b9e05827cd70ac102733bf2ab85a-20250414085224-4iymi.jpg"); background-size: cover; background-origin: content-box; background-position: center top; background-repeat: repeat; background-attachment: scroll;}
-#IMAGE50,#IMAGE50 > .ladi-image > .ladi-image-background{width: 93.1956px; height: 93.1956px;}
-#IMAGE50{top: 14.2068px; left: 8.587px;}
-#IMAGE50 > .ladi-image > .ladi-image-background{background-image: url("https://w.ladicdn.com/63dcce7f70e4df00118313ef/giphy-20200827090502-20240225053705-92_1l-20240610071012-kltgy.gif");}
+#BOX51{top: 0; left: 112px;}
+#BOX51 > .ladi-box{border-width: 2px; border-radius: 127px; border-style: solid; border-color: rgba(255, 255, 255, .96); box-shadow: 0 4px 16px rgba(5, 41, 94, .18); background-color: rgba(255, 255, 255, .55); background-image: url("https://w.ladicdn.com/s450x450/649340684a3700001217851c/z6504180394041_8865b9e05827cd70ac102733bf2ab85a-20250414085224-4iymi.jpg"); background-size: cover; background-origin: content-box; background-position: center top; background-repeat: no-repeat; background-attachment: scroll;}
+#BOX51 > .ladi-box::before{content: ''; position: absolute; inset: 6px; border: 1px solid rgba(111, 3, 3, .55); border-radius: 50%; pointer-events: none;}
+#IMAGE50,#IMAGE50 > .ladi-image > .ladi-image-background{width: 62px; height: 62px;}
+#IMAGE50{top: 7px; left: 119px; border-radius: 50%; z-index: 2; opacity: .18;}
+#IMAGE50 > .ladi-image > .ladi-image-background{border-radius: 50%; background-image: url("https://w.ladicdn.com/63dcce7f70e4df00118313ef/giphy-20200827090502-20240225053705-92_1l-20240610071012-kltgy.gif");}
+#TEMPLATE_LOGO_MARK{width: 76px; height: 76px; top: 0; left: 112px; z-index: 4; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(111, 3, 3, .7); border-radius: 50%; background: rgba(255, 255, 255, .62); animation: templateLogoFloat 5s ease-in-out infinite, templateLogoGlow 4s ease-in-out infinite;}
+#TEMPLATE_LOGO_MARK::before{content: ''; position: absolute; inset: 5px; border: 1px solid rgba(5, 41, 94, .28); border-top-color: rgba(111, 3, 3, .72); border-right-color: rgba(5, 41, 94, .55); border-radius: 50%; animation: templateLogoRing 8s linear infinite;}
+#TEMPLATE_LOGO_MARK span{position: relative; font-family: VVRNIEFWTJPTEQuVFRG, sans-serif; font-size: 22px; font-weight: bold; letter-spacing: 1px; color: rgb(5, 41, 94);}
+#TEMPLATE_LOGO_BRAND{width: 300px; height: 49px; top: 77px; left: 0; z-index: 3; animation: templateLogoAppear .9s ease-out .15s both;}
+#TEMPLATE_LOGO_BRAND .template-logo-brand-copy{height: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; text-align: center; color: rgb(5, 41, 94);}
+#TEMPLATE_LOGO_BRAND .template-logo-brand-kicker{font-family: VVRNIEFWTJPTEQuVFRG, sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 1.15px; line-height: 1.2; white-space: nowrap;}
+#TEMPLATE_LOGO_BRAND .template-logo-brand-name{margin-top: 0; font-family: MUZUViWSVAtUElDVFVSRVMtUlHTkFUVVJFLkURg, 'Brush Script MT', cursive; font-size: 36px; line-height: .9; color: rgb(111, 3, 3); white-space: nowrap;}
+#TEMPLATE_LOGO_BRAND .template-logo-brand-tagline{margin-top: 2px; padding-top: 2px; border-top: 1px solid rgba(111, 3, 3, .5); font-family: VVRNIEFWTyUVEY, sans-serif; font-size: 7px; letter-spacing: .35px; line-height: 1.1; color: rgb(111, 3, 3); white-space: nowrap;}
+@keyframes templateLogoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes templateLogoGlow{0%,100%{box-shadow:0 4px 16px rgba(5,41,94,.18)}50%{box-shadow:0 5px 22px rgba(111,3,3,.3)}}
+@keyframes templateLogoRing{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes templateLogoAppear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion: reduce){#TEMPLATE_LOGO_MARK,#TEMPLATE_LOGO_MARK::before,#TEMPLATE_LOGO_BRAND{animation:none!important;}}
 #HEADLINE79{width: 389px;top: 283.5px; left: 15.014px;}
 #HEADLINE79 > .ladi-headline{font-family: VVRNIEFWTyUVEY; font-size: 17.38px; font-weight: bold; line-height: 1.6; color: rgb(5, 41, 94); text-transform: uppercase; text-align: center;}
 #HEADLINE80{width: 419px;top: 355.5px; left: 0px;}
@@ -381,7 +397,7 @@ body {font-family: "Open Sans", sans-serif}
 #POPUP1{width: 281px; height: 424px;}
 #IMAGE44,#IMAGE44 > .ladi-image > .ladi-image-background{width: 258.793px; height: 276px;}
 #IMAGE44{top: 18px; left: 11.1035px;}
-#IMAGE44 > .ladi-image > .ladi-image-background{background-image: url("https://w.ladicdn.com/s600x600/649340684a3700001217851c/z6441027197731_e3ab092dd1ca4a78f51464e24cb92ead-20250325092829-yez4n.jpg");}
+#IMAGE44 > .ladi-image > .ladi-image-background{background-image: url("https://pngup.com/UhXF/2aOboQxpKAZ2NxbugagTVhWDGHeoDsqh0oP61vI8.jpg");}
 #BUTTON62{width: 209.397px; height: 40px;top: 337px; left: 35.8015px;}
 #BUTTON62 > .ladi-button{border-radius: 100px;}
 #BUTTON_TEXT62{width: 209px;}
@@ -441,3 +457,25 @@ body.lazyload .ladi-overlay, body.lazyload .ladi-box, body.lazyload .ladi-button
 [class*="hint-bottom-middle"]:before {right: 50%;margin-right: -5px;}
 [class*="hint-bottom-middle"]:after {left: 50%;-webkit-transform: translateX(-50%);-ms-transform: translateX(-50%);transform: translateX(-50%);}
 
+/* The original header and branding stay unchanged; Sheet rows use the original
+   two-column card dimensions, border, typography and button treatment. */
+#SECTION1 { height: 416.875px; }
+/* Keep the entire catalog above the fixed paper background, including text and images. */
+.envelope-catalog-section { position: relative; z-index: 1; isolation: isolate; box-sizing: border-box; width: 420px; margin: 0 auto; padding: 0 7px 70px; color: rgb(28,56,84); }
+.envelope-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+.envelope-card { min-width: 0; min-height: 374.626px; padding: 16.625px 8px 10px; display: flex; flex-direction: column; align-items: center; border: 2px solid rgb(2,28,104); border-radius: 12px; background: #fff; text-align: center; }
+.envelope-card h2 { width: 100%; min-height: 24px; margin: 0 0 6px; font-family: Roboto,sans-serif; font-size: 15px; font-weight: bold; line-height: 1.6; color: rgb(28,56,84); text-transform: uppercase; overflow-wrap: anywhere; }
+.envelope-picture { display: block; width: 144px; margin: auto 0 0; }
+.envelope-image { display: block; width: 144px; height: 289.194px; object-fit: contain; }
+.envelope-view, #envelopeCatalogRetry { display: inline-flex; align-items: center; justify-content: center; width: 140.247px; min-height: 25.1565px; border: 0; border-radius: 10px; background: rgb(28,56,84); color: white; font: bold 12px/1.6 Roboto,sans-serif; text-transform: uppercase; text-decoration: none; box-shadow: rgb(0,0,0) 0px 15px 20px -15px; cursor: pointer; }
+.envelope-view { animation: pulse 4s infinite; }
+/* Override the legacy a:link / a:visited inherited color on the dark button. */
+.envelope-card .envelope-view:link,
+.envelope-card .envelope-view:visited { color: #fff; }
+.envelope-unavailable { font: 12px/1.6 Roboto,sans-serif; }
+#envelopeCatalogStatus { text-align: center; font: 14px/1.6 Roboto,sans-serif; }
+#envelopeCatalogStatus:not(:empty) { padding: 20px 0; }
+#envelopeCatalogRetry { margin: 0 auto 20px; display: flex; }
+#envelopeCatalogRetry[hidden] { display: none; }
+.envelope-card a:focus-visible, #envelopeCatalogRetry:focus-visible { outline: 3px solid #a47647; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .envelope-view { animation: none; } }

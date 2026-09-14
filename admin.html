@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Quản trị bảng giá · Trúc Wedding</title>
+<title>Quản trị · Thiệp cưới Online Gia Hân</title>
 <link rel="stylesheet" href="css/admin.css" />
 </head>
 <body>
 <header class="admin-header">
   <div class="wrap nav">
-    <a class="brand" href="index.html">Trúc WEDDING</a>
+    <a class="brand" href="index.html">Thiệp cưới Online Gia Hân</a>
     <button id="logoutBtn" class="button secondary hidden" type="button">Đăng xuất</button>
   </div>
 </header>
@@ -19,8 +19,7 @@
 
   <section id="loginBox" class="login-card">
     <p class="eyebrow">ADMIN</p>
-    <h1>Quản lý Bảng giá</h1>
-    <p>Đăng nhập bằng tài khoản Google đã được cấp quyền trong <code>js/pricing-config.js</code> (mục <code>ADMINS</code>) và đã được share quyền Editor trên Google Sheet "Packages".</p>
+    <h1>Quản lý Bảng giá & Phong bì</h1>
     <button id="loginBtn" class="button" type="button">Đăng nhập bằng Google</button>
   </section>
 
@@ -28,12 +27,46 @@
     <div class="admin-toolbar">
       <div>
         <p class="eyebrow">ADMIN</p>
-        <h1>Quản lý Bảng giá</h1>
+        <h1>Quản lý Bảng giá & Phong bì</h1>
         <p id="userInfo"></p>
       </div>
     </div>
 
-    <div class="admin-grid">
+    <nav class="admin-tabs" aria-label="Mục quản lý">
+      <button type="button" class="button" id="pricingTab" aria-pressed="true">Bảng giá</button>
+      <button type="button" class="button secondary" id="envelopesTab" aria-pressed="false">Phong bì</button>
+      <a href="template.html" target="_blank" rel="noopener">Xem trang mẫu ↗</a>
+    </nav>
+    <div id="envelopesPanel" class="admin-grid hidden">
+      <form id="envelopeForm" class="form-card">
+        <h2 id="envelopeFormTitle">Thêm phong bì mới</h2>
+        <label>Chọn mẫu phong bì<select id="envelopeSelect" name="envelope_id"></select></label>
+        <label>Tên phong bì<input name="name" maxlength="80" required /></label>
+        <label>Link ảnh đại diện<input name="image_url" type="url" placeholder="https://…/phong-bi.jpg" aria-describedby="envelopeImageHelp" required /></label>
+        <div id="envelopeImageHelp" class="form-hint">
+          <p><strong>Cách lấy link ảnh:</strong> Truy cập <a href="https://postimages.org/" target="_blank" rel="noopener noreferrer">Postimages ↗</a> → tải ảnh lên → sao chép link ở mục <strong>“Liên kết trực tiếp”</strong> → dán vào ô trên.</p>
+          <p><strong>Kích thước gợi ý:</strong> 600 × 1200 px (ảnh dọc, tỷ lệ 1:2). Nên để nội dung phong bì gần sát mép ảnh; tránh ảnh ngang hoặc ảnh có nhiều khoảng trắng để mẫu hiển thị rõ hơn.</p>
+        </div>
+        <label>Link video<input name="video_url" type="url" placeholder="https://…" required /></label>
+        <p class="form-hint">Bấm ảnh hoặc “Xem thiệp” sẽ mở link video này trong tab mới.</p>
+        <section class="preview-card">
+          <h3>Xem trước</h3>
+          <img id="envelopePreviewImage" class="envelope-preview-image" alt="" hidden />
+          <p id="envelopeImageError" class="form-hint" hidden>Không tải được ảnh. Hãy kiểm tra URL và quyền xem công khai.</p>
+          <p id="envelopePreviewName"></p>
+          <a id="envelopePreviewLink" target="_blank" rel="noopener noreferrer" hidden>Xem thiệp ↗</a>
+        </section>
+        <p id="envelopeSaveMeta" class="save-meta" aria-live="polite"></p>
+        <div class="form-actions"><button id="envelopeSubmit" class="button" type="submit" disabled>Lưu phong bì</button></div>
+      </form>
+      <div class="table-card">
+        <div class="section-heading"><h2>Danh sách phong bì</h2><button id="envelopeRefresh" class="button secondary" type="button">Tải lại</button></div>
+        <p id="envelopeCount" class="form-hint"></p>
+        <p class="form-hint">Danh sách lấy từ tab Envelopes theo thứ tự dòng. Chọn “Thêm phong bì mới” để thêm mẫu.</p>
+        <div class="table-wrap"><table><thead><tr><th>Ảnh</th><th>Phong bì</th><th></th></tr></thead><tbody id="envelopeRows"></tbody></table></div>
+      </div>
+    </div>
+    <div id="pricingPanel" class="admin-grid">
       <form id="packageForm" class="form-card">
         <h2 id="formTitle">Sửa gói</h2>
         <label>Gói
@@ -44,28 +77,31 @@
             <option value="govip">Gói VIP — thiết kế theo yêu cầu</option>
           </select>
         </label>
-        <label>Trạng thái
-          <select name="status">
-            <option value="active">Hiện (active)</option>
-            <option value="inactive">Ẩn (inactive)</option>
-          </select>
-        </label>
         <label>Nhãn hiển thị<input name="label" placeholder="Gói 1" required /></label>
-        <div class="form-row">
-          <label>Giá hiện tại<input name="final_price" placeholder="149.000 VNĐ" required /></label>
-          <label>Giá gốc (để trống nếu không có)<input name="original_price" placeholder="299.000 VNĐ" /></label>
+        <div id="priceRow" class="form-row">
+          <label class="price-current">Giá hiện tại<input name="final_price" placeholder="149.000 VNĐ" required /></label>
+          <label data-package-field="original_price">Giá gốc (để trống nếu không có)<input name="original_price" placeholder="299.000 VNĐ" /></label>
         </div>
-        <label>Nhãn giảm giá (để trống nếu không có)<input name="discount_label" placeholder="Giảm 50% còn:" /></label>
-        <label>Mô tả ngắn (cho phép &lt;br&gt;, &lt;span style=&quot;color:...&quot;&gt;)
-          <textarea name="subtitle" rows="2" placeholder="1 link thiệp: Nhà trai hoặc nhà gái"></textarea>
+        <label data-package-field="discount_label">Nhãn giảm giá (để trống nếu không có)<input name="discount_label" placeholder="Giảm 50% còn:" /></label>
+        <label>Mô tả ngắn
+          <textarea name="subtitle" rows="3" placeholder="Ví dụ: 1 link thiệp cho nhà trai hoặc nhà gái"></textarea>
         </label>
-        <label>Danh sách tính năng (cho phép &lt;br&gt;, &lt;span style=&quot;color:...&quot;&gt;)
-          <textarea name="features" rows="6" placeholder="- Ghi được tên khách mời...&lt;br&gt;- ..."></textarea>
+        <label data-package-field="features">Danh sách tính năng <span class="field-note">(mỗi dòng một ý)</span>
+          <textarea name="features" rows="8" placeholder="Ghi được tên khách mời không giới hạn&#10;Có Google Map dẫn đường&#10;Cài nhạc nền theo yêu cầu"></textarea>
         </label>
-        <p class="form-hint">Trang chủ luôn có đúng 4 gói cố định (goi1/goi2/goi3/govip) — sửa nội dung ở đây thay vì tạo gói mới. "Ẩn" chỉ giữ nguyên giá cũ đang hiển thị trên trang, không xoá gì cả.</p>
+        <p id="packageHelp" class="package-help"></p>
+        <p class="form-hint">Không cần nhập mã HTML. Hệ thống tự xuống dòng theo nội dung bạn nhập và chỉ hiện các trường có tác dụng với gói đang chọn.</p>
+        <section class="preview-card" aria-labelledby="previewTitle">
+          <div class="preview-heading"><h3 id="previewTitle">Xem trước</h3><span id="previewPackage"></span></div>
+          <p id="previewOriginal" class="preview-original"></p>
+          <p id="previewFinal" class="preview-final"></p>
+          <p id="previewDiscount" class="preview-discount"></p>
+          <p id="previewSubtitle" class="preview-subtitle"></p>
+          <ul id="previewFeatures" class="preview-features"></ul>
+        </section>
+        <p id="saveMeta" class="save-meta" aria-live="polite"></p>
         <div class="form-actions">
           <button id="packageSubmit" class="button" type="submit">Lưu gói</button>
-          <button id="packageDelete" class="button danger" type="button">Xoá dữ liệu gói này</button>
         </div>
       </form>
 
@@ -76,7 +112,7 @@
         </div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Gói</th><th>Giá gốc</th><th>Giá hiện tại</th><th>Trạng thái</th><th></th></tr></thead>
+            <thead><tr><th>Gói</th><th>Giá gốc</th><th>Giá hiện tại</th><th></th></tr></thead>
             <tbody id="packageRows"></tbody>
           </table>
         </div>
@@ -88,6 +124,8 @@
 <script src="https://accounts.google.com/gsi/client" defer></script>
 <script src="js/pricing-config.js"></script>
 <script src="js/sheetsApi.js"></script>
+<script src="js/envelopes-config.js"></script>
 <script src="js/admin.js" defer></script>
+<script src="js/admin-envelopes.js" defer></script>
 </body>
 </html>
